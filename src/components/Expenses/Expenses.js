@@ -5,10 +5,23 @@ import ExpensesFilter from "../ExpenseFilter/ExpensesFilter";
 import { useState } from "react";
 
 const Expenses = (props) => {
-  const [year, setYear] = useState("2019");
+  const [year, setYear] = useState("2020");
+  const [filteredExpenses, setFilteredExpenses] = useState(
+    props.list.filter(
+      (expense) => expense.date.getFullYear().toString() === year
+    )
+  );
+
   const onYeahSelectHandler = (selectedYear) => {
     setYear(selectedYear);
+    setFilteredExpenses(
+      props.list.filter(
+        (expense) => expense.date.getFullYear().toString() === selectedYear
+      )
+    );
   };
+
+  console.log(filteredExpenses);
 
   return (
     <div>
@@ -17,7 +30,7 @@ const Expenses = (props) => {
           selectedYear={year}
           onYearSelected={onYeahSelectHandler}
         />
-        {props.list.map((item, index) => {
+        {filteredExpenses.map((item, index) => {
           return (
             <ExpenseItem
               key={index}
