@@ -34,18 +34,14 @@ const ExpenseForm = (props) => {
     setDate("");
   };
 
-  const cancelHandler = () => {
-    setIsFormShown(false);
-  };
-
-  const showHandler = () => {
-    setIsFormShown(true);
+  const showHandler = (isShown) => {
+    setIsFormShown(isShown);
   };
 
   if (!isFormShown) {
     return (
       <div style={{ textAlign: "center" }}>
-        <button type="button" onClick={showHandler}>
+        <button type="button" onClick={() => showHandler(true)}>
           Add Expense
         </button>
       </div>
@@ -81,7 +77,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="button" onClick={cancelHandler}>
+        <button type="button" onClick={() => showHandler(false)}>
           Cancel
         </button>
         <button type="submit">New Expense</button>
