@@ -32,6 +32,7 @@ const ExpenseForm = (props) => {
     setTitle("");
     setAmount("");
     setDate("");
+    showHandler(false);
   };
 
   const showHandler = (isShown) => {
